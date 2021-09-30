@@ -1,25 +1,39 @@
-function Message(props){
-  const { user, message, likes } = props.messageData
-  return (<li>
-    <strong>{user}</strong>:
-    <span>{message} </span>
-    <button> {likes} </button>
-  </li>)
-}
+// function Message(props){
+//   const { user, message } = props.messageData
 
-// import { Component } from 'react'
-// class Message extends Component {
-
-
-//   render(){
-//     console.log(this.props)
-//     return (<li>
-//       <strong>{this.props.messageData.user}</strong>:
-//       <span>{this.props.messageData.message} </span>
-//       <button> {this.props.messageData.likes} </button>
-//     </li>)
+//   function onClick(){
+//     console.log(props.messageData.message)
 //   }
 
+//   return (<li>
+//     <strong>{user}</strong>:&nbsp;
+//     <span>{message} </span>
+//     <button onClick={onClick}> 0 Likes </button>
+//   </li>)
 // }
+
+import { Component } from 'react'
+import LikeButton from './LikeButton'
+class Message extends Component {
+
+  state = {
+    likes: 42
+  }
+
+  onClick = () => {
+    this.setState({likes: this.state.likes + 1})
+  }
+
+  render(){
+    const { user, message } = this.props.messageData
+    return (
+    <li>
+      <strong>{user}</strong>:&nbsp;
+      <span>{message}</span>&nbsp;
+      <LikeButton likes={this.state.likes} onLikeClick={this.onClick} />
+    </li>)
+  }
+
+}
 
 export default Message

@@ -55,3 +55,6 @@ BREAK
   * Is there any difference between what will happen if state changes vs. if props change?
   * Can state become props?
   * Can props become state?
+
+* Rules for state
+  * Never mutate state directly. Don't call `this.state =`, don't call `this.state.messages.push`, and don't call `this.state.messages.sort`

@@ -1,28 +1,36 @@
 import Message from "../components/Message"
-// import messages from "../assets/messages"
+import { Component } from "react"
 
 // import { Component } from 'react'
 // class MessageList extends Component {
 
-//   countToFour = () => [1,2,3,4].forEach(console.log)
-
 //   render(){
-//     {this.countToFour()}
+//     console.log(this.props)
 //     return <h1>Hello!</h1>
 //   }
 // }
 
-function MessageList(){
-  const countToFour = () => [1,2,3,4].forEach(console.log)
-  const messages = [
-    {user: "Freddy Kreuger", message: "Starring in a new movie where I murder coders. Calling it Freddy vs. JSON", likes: 20},
-    {user: "Jason Voorhees", message: "I don't get it.", likes: 10},
-    {user: "Michael Myers", message: "I only kill cool teens.", likes: 5},
-    {user: "Girl from the Ring", message: "Watch this cool video", likes: 12},
-  ]
+class MessageList extends Component {
+  state = {
+    messages: [
+      {user: "Freddy Kreuger", message: "Starring in a new movie where I murder coders. Calling it Freddy vs. JSON"},
+      {user: "Jason Voorhees", message: "I don't get it."},
+      {user: "Michael Myers", message: "I only kill cool teens."},
+      {user: "Girl from the Ring", message: "Watch this cool video"},
+    ]
+  }
+
+  lolFreddy = () => {
+    this.setState({messages: [...this.state.messages, {user: "Freddy Kreuger", message: "lol"}]})
+  }
+
+  // <Message messageData={{user: "Freddy Kreuger", message: "Starring in a new movie where I murder coders. Calling it Freddy vs. JSON"}}/>
+  render(){
   return <ul>
-    {messages.map((message, i) => <Message key={i} messageData={message} />)}
-  </ul>
+      {this.state.messages.map((message, i) => <Message key={i} messageData={message} />)}
+      <button onClick={this.lolFreddy}>Make Freddy Say Lol</button>
+    </ul>
+  }
 }
 
 export default MessageList
