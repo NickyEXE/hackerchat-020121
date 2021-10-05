@@ -1,8 +1,27 @@
 # Hackerchat
 
 This README covers the following lectures:
+* [Forms Lecture](#forms-lecture)
 * [Components and Props Lecture](#components-and-props-lecture)
 * [State and Events Lecture](#state-and-events-lecture)
+
+# Forms Lecture
+
+* Reference: [Docs](https://reactjs.org/docs/forms.html)
+
+## Key Questions
+* How do forms work in React?
+* What is an uncontrolled form input? What is a controlled form input?
+  * Which kind should I use, and why?
+* What kind of event listeners should I use with my form?
+* What kind of event listeners should I use with my form inputs?
+* How can I share one event listener between all my form inputs?
+  * What are computed properties again?
+* What should I do when the form gets submitted?
+  * What if my state for the thing I just created / updated is in a different component?
+
+## Bonus:
+* Let's figure out our message state!!!!
 
 # Components and Props Lecture
 
@@ -32,7 +51,7 @@ This README covers the following lectures:
 
 # State and Events Lecture
 
-# Key Questions
+## Key Questions
 * What is state and why is it cool?
 * How do I set up state in a component for the first time?
   * Can I has state in a functional component?

@@ -26,10 +26,10 @@ class MessageList extends Component {
 
   // <Message messageData={{user: "Freddy Kreuger", message: "Starring in a new movie where I murder coders. Calling it Freddy vs. JSON"}}/>
   render(){
-  return <ul>
+  return <ol>
       {this.state.messages.map((message, i) => <Message key={i} messageData={message} />)}
       <button onClick={this.lolFreddy}>Make Freddy Say Lol</button>
-    </ul>
+    </ol>
   }
 }
 
