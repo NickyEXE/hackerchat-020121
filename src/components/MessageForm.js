@@ -3,14 +3,20 @@ import { Component } from 'react';
 export default class MessageForm extends Component {
 
   state = {
-    user: "",
+    username: "",
     message: ""
   }
 
   onSubmit = (e) => {
     e.preventDefault()
-    this.props.addMessage(this.state)
-    this.setState({message: "", user: ""})
+    fetch(`http://localhost:3000/channels/${this.props.channelId}/messages`, {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state),
+    })
+    this.setState({message: "", username: ""})
   }
 
   onChange = (e) => {
@@ -18,12 +24,12 @@ export default class MessageForm extends Component {
   }
 
   render(){
-    const {message, user} = this.state
+    const {message, username} = this.state
     return (
       <form className="message-form" onSubmit={this.onSubmit}>
         <label>
-          User:
-          <input type="text" name="user" onChange={this.onChange} value={user} />
+          Username:
+          <input type="text" name="username" onChange={this.onChange} value={username} />
         </label>
         <br/>
         <label>

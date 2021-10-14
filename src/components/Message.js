@@ -25,10 +25,10 @@ class Message extends Component {
   }
 
   render(){
-    const { user, message } = this.props.messageData
+    const { username, message } = this.props.messageData
     return (
     <li>
-      <strong>{user}</strong>:&nbsp;
+      <strong>{username}</strong>:&nbsp;
       <span>{message}</span>&nbsp;
       <LikeButton likes={this.state.likes} onLikeClick={this.onClick} />
     </li>)
