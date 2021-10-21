@@ -1,4 +1,5 @@
 import Message from "../components/Message"
+import MessageForm from "../components/MessageForm"
 
 // Example of hooks:
 // import { useState } from 'react'
@@ -23,8 +24,7 @@ class MessageList extends Component {
   }
 
   getMessages = () => {
-    console.log("getting messages")
-    fetch(`http://localhost:3000/channels/${this.props.channelId}`)
+    fetch(`http://localhost:3000/channels/${this.props.match.params.id}`)
     .then(res => res.json())
     .then(channel => this.setState({...channel}))
   }
@@ -34,8 +34,8 @@ class MessageList extends Component {
     this.setState({interval: setInterval(this.getMessages, 3000)})
   }
 
-  componentDidUpdate(prevProps, prevState){
-    if (prevProps.channelId !== this.props.channelId){
+  componentDidUpdate(prevProps){
+    if (prevProps.match.params.id !== this.props.match.params.id){
      this.getMessages()
     }
   }
@@ -55,6 +55,7 @@ class MessageList extends Component {
         {/* hooks example: <button onClick={handleClick}>{counter}</button> */}
         {messages.map((message) => <Message key={message.id} messageData={message} />)}
       </ol>
+      <MessageForm channelId={ this.props.match.params.id } />
     </>
   }
 }

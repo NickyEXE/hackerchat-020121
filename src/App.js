@@ -1,24 +1,21 @@
 import './App.css';
 import MessageList from './containers/MessageList'
-import MessageForm from './components/MessageForm'
 import Welcome from "./components/Welcome"
 import { Component } from 'react'
 import ChannelList from './containers/ChannelList';
+import { Switch, Route } from 'react-router-dom'
+
 class App extends Component {
 
-  state = {
-    channelId: null,
-  }
-
-  changeChannel = (id) => this.setState({channelId: id})
 
   render(){
-    const { changeChannel, state: { channelId } } = this
     return <>
-    <ChannelList channelId={channelId} changeChannel={changeChannel}/>
+    <ChannelList/>
     <main>
-      {channelId ? <MessageList channelId={channelId} /> : <Welcome />}
-      {channelId && <MessageForm channelId={channelId} />}
+      <Switch>
+        <Route path="/channels/:id" component={MessageList}/>
+        <Route exact path="/" component= {Welcome} />
+      </Switch>
     </main>
     </>
   }

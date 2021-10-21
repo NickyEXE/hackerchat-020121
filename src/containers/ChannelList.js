@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import ChannelButton from "../components/ChannelButton"
+import { NavLink } from "react-router-dom"
 
 export default class ChannelList extends Component {
 
@@ -16,8 +17,8 @@ export default class ChannelList extends Component {
   render(){
     return (
     <aside>
-      {this.state.channels.map(channel => <ChannelButton key={channel.id} selectedId={this.props.channelId} {...channel} changeChannel={this.props.changeChannel} />)}
-      <div onClick={() => this.props.changeChannel(null)}>Home</div>
+      {this.state.channels.map(channel => <ChannelButton key={channel.id} {...channel} />)}
+      <NavLink to="/"><div>Home</div></NavLink>
     </aside>
     )
   }
