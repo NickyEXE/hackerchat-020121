@@ -18,7 +18,7 @@ export default class ChannelList extends Component {
     return (
     <aside>
       {this.state.channels.map(channel => <ChannelButton key={channel.id} {...channel} />)}
-      <NavLink to="/"><div>Home</div></NavLink>
+      <NavLink to="/" id="home-link"><div>Home</div></NavLink>
     </aside>
     )
   }

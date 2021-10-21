@@ -77,12 +77,21 @@ aside div {
   padding-left: 1em;
 }
 
-aside div:hover {
+aside a {
+  color: white;
+  text-decoration: none;
+}
+
+aside a:hover {
   color: yellow;
 }
 
-aside div.selected {
+aside a.active {
   color: red;
+}
+
+aside a#home-link{
+  color: orange;
 }
 
 .message-form input {
