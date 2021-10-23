@@ -1,14 +1,29 @@
 import { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 
 function Login(props){
   const [user, setUser] = useState({username: "", password: ""})
-
+  const history = useHistory()
   const handleChange = (e) => setUser({...user, [e.target.name]: e.target.value})
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log("do something with me!", user)
+    fetch('http://localhost:3000/sessions', {
+      method: 'POST', // or 'PUT'
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+    .then(response => response.json())
+    .then(response => {
+      if (!response.errors){
+        props.setUser(user)
+        history.push("/")
+      } else {
+        alert(response.errors)
+      }
+    })
   }
 
   return (
@@ -21,7 +36,7 @@ function Login(props){
       <br/>
       <label>
         Password:
-        <input type="text" name="password" value={user.password} onChange={handleChange} />
+        <input type="password" name="password" value={user.password} onChange={handleChange} />
       </label>
       <br/>
       <input type="submit" value="Submit" />
