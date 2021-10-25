@@ -1,18 +1,7 @@
 import Message from "../components/Message"
 import MessageForm from "../components/MessageForm"
-
-// Example of hooks:
-// import { useState } from 'react'
-
-
 import { Component } from 'react'
-// class MessageList extends Component {
-
-//   render(){
-//     console.log(this.props)
-//     return <h1>Hello!</h1>
-//   }
-// }
+import { Redirect } from "react-router"
 
 class MessageList extends Component {
 
@@ -51,6 +40,7 @@ class MessageList extends Component {
     const { messages, name } = this.state
     return <>
       <h1>{name}</h1>
+      {!this.props.id && <Redirect to="/login"/>}
       <ol>
         {/* hooks example: <button onClick={handleClick}>{counter}</button> */}
         {messages.map((message) => <Message key={message.id} messageData={message} />)}

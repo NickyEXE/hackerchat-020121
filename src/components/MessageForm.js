@@ -13,8 +13,9 @@ export default class MessageForm extends Component {
       method: 'POST', // or 'PUT'
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': localStorage.token,
       },
-      body: JSON.stringify(this.state),
+      body: JSON.stringify({ message: this.state.message }),
     })
     this.setState({message: "", username: ""})
   }
@@ -24,14 +25,9 @@ export default class MessageForm extends Component {
   }
 
   render(){
-    const {message, username} = this.state
+    const {message} = this.state
     return (
       <form className="message-form" onSubmit={this.onSubmit}>
-        <label>
-          Username:
-          <input type="text" name="username" onChange={this.onChange} value={username} />
-        </label>
-        <br/>
         <label>
           Message:
           <input type="text" name="message" onChange={this.onChange} value={message} />

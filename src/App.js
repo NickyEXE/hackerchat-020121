@@ -16,11 +16,27 @@ class App extends Component {
     }
   }
 
-  setUser = (user) => {
+  setUser = ({user, token}) => {
     this.setState({ user })
+    localStorage.token = token
+  }
+
+  componentDidMount(){
+    localStorage.token && fetch("http://localhost:3000/autologin", {
+      headers: {'Authorization': localStorage.token}
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res.user) {
+        this.setUser(res)
+      } else {
+        localStorage.clear()
+      }
+    })
   }
 
   render(){
+    const {id, username} = this.state.user
     return <>
     <ChannelList/>
     <main>
@@ -29,8 +45,8 @@ class App extends Component {
         {/* <Route path="/signup"  render={(routeProps) => <Signup {...routeProps} setUser={this.setUser}/>}/> */}
         <Route path="/signup"><Signup setUser={this.setUser}/></Route>
         <Route path="/login"><Login setUser={this.setUser}/></Route>
-        <Route path="/channels/:id" component={MessageList}/>
-        <Route exact path="/" component= {Welcome} />
+        <Route path="/channels/:id" render={(routeProps) => <MessageList {...routeProps} id={id} />}/>
+        <Route exact path="/" render={() => <Welcome username={username}/>} />
       </Switch>
     </main>
     </>

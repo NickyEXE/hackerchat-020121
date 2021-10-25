@@ -18,7 +18,7 @@ function Login(props){
     .then(response => response.json())
     .then(response => {
       if (!response.errors){
-        props.setUser(user)
+        props.setUser(response)
         history.push("/")
       } else {
         alert(response.errors)
@@ -28,6 +28,7 @@ function Login(props){
 
   return (
     <>
+    <h1>Login!</h1>
     <form onSubmit={handleSubmit}>
       <label>
         Username:

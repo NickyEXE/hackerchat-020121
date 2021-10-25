@@ -18,7 +18,7 @@ function Signup(props){
     .then(response => response.json())
     .then(response => {
       if (!response.errors){
-        props.setUser(user)
+        props.setUser(response)
         history.push("/")
       } else {
         alert(response.errors)
@@ -28,6 +28,7 @@ function Signup(props){
 
   return (
     <>
+    <h1>Signup!</h1>
     <form onSubmit={handleSubmit}>
       <label>
         Username:
